@@ -1,3 +1,5 @@
+#FIXME: SOLVE IT BY HEAP
+
 def available_jobs(jobs, tic):
     #Pass Sorted available jobs
     available_jobs = []
