@@ -28,12 +28,9 @@ def solution(lines):
     v = {}
     for line in lines:
         s_t, e_t = parse(line)
-        # print(s_t, e_t)
-        # print(hashing(s_t)-1000, hashing(e_t))
         for i in range(hashing(s_t)-1000, hashing(e_t)):
             try:
                 v[i]+=1
             except KeyError:
                 v[i] = 1
-    # print(v.values())
     return max(list(v.values()))
