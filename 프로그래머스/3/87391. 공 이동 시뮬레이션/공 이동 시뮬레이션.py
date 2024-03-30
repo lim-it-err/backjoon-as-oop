@@ -1,7 +1,7 @@
-# 누적합
 # 1. 쿼리를 역으로 돌리면서
-# 2. 후보 영역이 벽과 마닿고, 그에 수직하는 쿼리가 발생했을때는 그에 상응하는 직사각형을 생성한다.
-# 3. 아닐 경우, 직사각형을 평행이동한다. 
+# 2. 후보 영역이 벽과 마닿고, 그에 수직하는 쿼리가 발생했을때는 (is_conflict) 그에 상응하는 직사각형을 생성한다.(increase_rectangle)
+# 3. 아닐 경우, 직사각형을 평행이동한다. (move_rectangle)
+# 4. 직사각형과 움직인 사각형의 공통 구역의 넓이를 구한다. (overlap)
 dxs, dys = [0, 0, -1, 1], [-1, 1, 0, 0]
 
 def is_conflict(left, right, pos, n, m, amount):
@@ -63,17 +63,8 @@ def solution(n, m, x, y, queries):
         margin = is_conflict(left, right, pos, n, m, 1)
         if margin:
             left, right = increase_rectangle(left, right, opposite_pos, amount, n, m)
-            # print("11",pos, left, right, margin)
-
-            # ret, left, right = move_rectangle(left, right, opposite_pos, amount-margin, n, m)
-            # print("12",ret, pos, left, right, amount-margin)
-
-            # if ret == False:
-                # return 0
         else:
             ret, left, right = move_rectangle(left, right, opposite_pos, amount, n, m)
-            # print("2", pos,left, right)
             if ret == False:
                 return 0
-    # print(left, right)
     return (abs(left[0]-right[0])+1)*(abs(left[1]-right[1])+1)
